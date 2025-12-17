@@ -9,8 +9,9 @@ const props = defineProps<{
 }>();
 </script>
 
-<template><div class="dark:border-gray-600">
-    <table class="w-full table-fixed bg-white dark:bg-black"><TableHeader :columns="props.columns" />
+<template>
+    <div class="dark:border-gray-600">
+        <table class="w-full table-fixed bg-white dark:bg-black"><TableHeader :columns="props.columns" />
             <TableBody 
                 :data="props.data" 
                 :columns="props.columns"
