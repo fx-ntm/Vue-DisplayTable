@@ -3,10 +3,8 @@
     "singleQuote": true,
     "singleAttributePerLine": false,
     "htmlWhitespaceSensitivity": "css",
-    "printWidth": 120,
+    "printWidth": 80,
     "plugins": [
-        "prettier-plugin-organize-imports",
-        "prettier-plugin-tailwindcss"
     ],
     "tailwindFunctions": [
         "clsx",
@@ -19,7 +17,7 @@
         {
             "files": "**/*.yml",
             "options": {
-                "tabWidth": 2
+                "tabWidth": 3
             }
         }
     ]
