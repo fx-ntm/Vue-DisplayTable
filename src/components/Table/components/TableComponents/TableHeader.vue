@@ -8,14 +8,14 @@ const props = defineProps<{
 </script>
 
 <template>
-  <thead class="sticky top-0 z-3 bg-white dark:bg-black">
-    <tr class="border-b-2 border-black dark:border-white">
-      <TableHeaderCell
-        v-for="column in props.columns"
-        :key="column.key"
-        :title="column.label"
-        :column="column"
-      />
-    </tr>
-  </thead>
+    <thead class="sticky top-0 z-3 bg-white dark:bg-black">
+        <tr class="border-b-2 border-black dark:border-white">
+          <TableHeaderCell
+            v-for="column in props.columns"
+            :key="column.key"
+            :title="column.label"
+            :column="column"
+          />
+        </tr>
+    </thead>
 </template>

@@ -9,10 +9,10 @@ const props = defineProps<{
 
 <template>
   <td class="text-left text-md dark:text-white relative pr-12">
-    <div class="overflow-hidden whitespace-nowrap relative">
+    <div class="relative">
         <p>{{ props.data }}</p>
       <div
-        class="absolute top-0 right-0 bottom-0 w-16 bg-gradient-to-l from-white dark:from-black to-transparent pointer-events-none"
+        class="absolute top-0 right-0 bottom-0 w-16"
       ></div>
     </div>
   </td>
