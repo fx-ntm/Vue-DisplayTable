@@ -44,7 +44,6 @@ const data: TableData[] = [
     <TableMain :columns="columns" :data="data" />
 </template>
 ```
-Result:
 ![alt text](https://github.com/fx-ntm/Vue-DisplayTable/blob/main/2025-12-17-162533_hyprshot.png "Static Content")
 
 ## Quick Start: Populating the Table dynamically
@@ -90,7 +89,6 @@ onMounted(async () => {
     <TableMain v-else :columns="columns" :data="users" />
 </template>
 ```
-Result:
 ![alt text](https://github.com/fx-ntm/Vue-DisplayTable/blob/main/2025-12-17-162726_hyprshot.png "Dynamic Content")
 
 ## Props
@@ -143,6 +141,9 @@ Vue-DisplayTable uses Tailwind CSS classes, albeit very minimal to not have any 
 ### Customizing Styles
 
 You can override styles using Tailwind's utility classes or your own CSS. The components use standard HTML table elements (`table`, `thead`, `tbody`, `tr`, `th`, `td`).
+
+## Honorable Mentions to the DataTables Library
+I've taken a huge inspiration by https://github.com/DataTables/DataTablesSrc while creating this library. At work I initially used DataTables for a project, after which I decided to make my own library to meet my project's individual needs. As I noticed that my own library strays far away from DataTables' design and principle (mainly the jQuery and Tailwind approach, Vue's reactivity approach compared to jQuery and some customization concerns I experienced), I've decided to open-source the code I've written.
 
 ## License
 
