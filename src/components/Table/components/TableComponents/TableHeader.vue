@@ -1,10 +1,20 @@
 <script setup lang="ts">
 import TableHeaderCell from './TableHeaderCell.vue';
-import type { TableColumn } from '../../types/TableTypes';
+import type { TableColumn, SortDirection } from '../../types/TableTypes';
 
 const props = defineProps<{
     columns: TableColumn[];
+    sortKey: string | null;
+    sortDirection: SortDirection
 }>();
+
+const emit = defineEmits<{
+    sort: [column: TableColumn]
+}>();
+
+const handleSort = (column: TableColumn) => {
+    emit('sort', column);
+};
 </script>
 
 <template>
@@ -15,6 +25,10 @@ const props = defineProps<{
                 :key="column.key"
                 :title="column.label"
                 :column="column"
+                :is-sorted="sortKey === column.key"
+                :sort-direction="sortKey === column.key ? sortDirection : null"
+                :class="[column.sortable ? 'hover:cursor-pointer' : '']"
+                @sort="handleSort"
             />
         </tr>
     </thead>
