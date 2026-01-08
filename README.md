@@ -1,11 +1,16 @@
 # Vue-DisplayTable
 
+[![npm version](https://img.shields.io/npm/v/vue-displaytable.svg)](https://www.npmjs.com/package/vue-displaytable)
+[![npm downloads](https://img.shields.io/npm/dm/vue-displaytable.svg)](https://www.npmjs.com/package/vue-displaytable)
+[![license](https://img.shields.io/npm/l/vue-displaytable.svg)](https://github.com/fx-ntm/Vue-DisplayTable/blob/main/LICENSE)
+
 A table component for Vue 3 designed with a modular structure for high customization and editing
 
 ## Features
 
 -   **Minimal and Modular Design:** Designed with a modular structure and a minimal design, allowing you to add your own flavor to the code as well as emitting/passing any event/prop to any part of the table you desire
 -   **Vue 3 Composition API + TypeScript:** Follows the Vue 3 Composition API syntax for easy readability and TypeScript to maintain the code clean
+-   **Sorting:** It has a built-in sorting feature (using arr.sort()), which can be enabled by adding the optional column parameter `sortable`.
 
 ## Installation
 
@@ -28,10 +33,10 @@ import { TableMain } from 'vue-displaytable';
 import type { TableColumn, TableData } from 'vue-displaytable';
 
 const columns: TableColumn[] = [
-    { key: 'id', label: 'ID', width: '10%' },
+    { key: 'id', label: 'ID', width: '10%', sortable: true },
     { key: 'name', label: 'Name', width: '30%' },
     { key: 'email', label: 'Email', width: '40%' },
-    { key: 'role', label: 'Role', width: '20%' },
+    { key: 'role', label: 'Role', width: '20%' sortable: false },
 ];
 
 const data: TableData[] = [
@@ -57,10 +62,10 @@ import { TableMain } from 'vue-displaytable';
 import type { TableColumn, TableData } from 'vue-displaytable';
 
 const columns: TableColumn[] = [
-    { key: 'id', label: 'ID', width: '10%' },
-    { key: 'name', label: 'Name', width: '30%' },
+    { key: 'id', label: 'ID', width: '10%', sortable: true },
+    { key: 'name', label: 'Name', width: '30%', sortable: true },
     { key: 'email', label: 'Email', width: '40%' },
-    { key: 'company', label: 'Company', width: '20%' },
+    { key: 'company', label: 'Company', width: '20%', sortable: true },
 ];
 
 const users = ref<TableData[]>([]);
