@@ -3,7 +3,7 @@ import type { TableColumn, TableData } from '../../types/TableTypes';
 import TableRow from './TableRow.vue';
 
 const props = defineProps<{
-    data: TableData[];
+    data: TableData[] | undefined;
     columns: TableColumn[];
 }>();
 </script>

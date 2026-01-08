@@ -5,7 +5,7 @@ import type {
     TableData,
 } from '../types/TableTypes';
 
-export function useSorting(data: TableData[]) {
+export function useSorting(data: TableData[] | undefined) {
     const sortKey = ref<string | null>(null);
     const sortDirection = ref<SortDirection>(null);
 
@@ -28,26 +28,28 @@ export function useSorting(data: TableData[]) {
     };
 
     const sortedData = computed(() => {
-        if (!sortKey.value || !sortDirection.value || data.length == 0) {
+        if(data == null) return data;
+
+        if (!sortKey.value || !sortDirection.value) {
             return data;
+        } else {
+            return [...data].sort((a, b) => {
+                const aVal = a[sortKey.value!];
+                const bVal = b[sortKey.value!];
+
+                if (aVal == null) return sortDirection.value === 'asc' ? 1 : -1;
+                if (bVal == null) return sortDirection.value === 'asc' ? -1 : 1;
+
+                let comparison = 0;
+                if (typeof aVal === 'string' && typeof bVal === 'string') {
+                    comparison = aVal.localeCompare(bVal);
+                } else {
+                    comparison = aVal < bVal ? -1 : aVal > bVal ? 1 : 0;
+                }
+
+                return sortDirection.value === 'asc' ? comparison : -comparison;
+            });
         }
-
-        return [...data].sort((a, b) => {
-            const aVal = a[sortKey.value!];
-            const bVal = b[sortKey.value!];
-
-            if (aVal == null) return sortDirection.value === 'asc' ? 1 : -1;
-            if (bVal == null) return sortDirection.value === 'asc' ? -1 : 1;
-
-            let comparison = 0;
-            if (typeof aVal === 'string' && typeof bVal === 'string') {
-                comparison = aVal.localeCompare(bVal);
-            } else {
-                comparison = aVal < bVal ? -1 : aVal > bVal ? 1 : 0;
-            }
-
-            return sortDirection.value === 'asc' ? comparison : -comparison;
-        });
     });
     return {
         handleSort,
