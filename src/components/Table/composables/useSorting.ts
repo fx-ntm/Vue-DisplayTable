@@ -28,7 +28,7 @@ export function useSorting(data: TableData[]) {
     };
 
     const sortedData = computed(() => {
-        if (!sortKey.value || !sortDirection.value) {
+        if (!sortKey.value || !sortDirection.value || data.length == 0) {
             return data;
         }
 

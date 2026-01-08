@@ -21,7 +21,8 @@ const { handleSort, sortedData, sortKey, sortDirection } = useSorting(props.data
                 :sort-direction="sortDirection"
                 @sort="handleSort" 
             />
-            <TableBody :data="sortedData" :columns="props.columns" />
+            <TableBody v-if="props.data.length != 0" :data="sortedData" :columns="props.columns" />
+            <p v-else>No data found :(</p>
         </table>
     </div>
 </template>
