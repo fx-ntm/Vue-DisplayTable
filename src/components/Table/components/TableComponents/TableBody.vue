@@ -15,6 +15,10 @@ const props = defineProps<{
             :key="`row-${index}`"
             :data="row"
             :columns="props.columns"
-        />
+        >
+            <template v-for="(_, slotName) in $slots" #[slotName]="slotProps">
+                <slot :name="slotName" v-bind="slotProps" />
+            </template>
+        </TableRow>
     </tbody>
 </template>
