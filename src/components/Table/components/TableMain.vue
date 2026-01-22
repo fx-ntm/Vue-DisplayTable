@@ -24,8 +24,12 @@ const { handleSort, sortedData, sortKey, sortDirection } = useSorting(props.data
                 :sort-direction="sortDirection"
                 @sort="handleSort" 
             />
-            <TableBody v-if="props.data && props.data.length != 0" :data="sortedData" :columns="props.columns" />
-            <p v-else>{{ props.emptyMessage }}</p>
+            <TableBody :data="sortedData" :columns="props.columns">
+                <template v-for="(_, slotName) in $slots" #[slotName]="slotProps">
+                    <slot :name="slotName" v-bind="slotProps" />
+                </template>
+            </TableBody>
+            <p v-if="props.data && props.data.length == 0">{{ props.emptyMessage }}</p>
         </table>
     </div>
 </template>

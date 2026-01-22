@@ -23,7 +23,9 @@ npm install vue-displaytable
 -   Vue 3.3+
 -   Tailwind CSS 4 (optional, highly recommended, default styling uses Tailwind)
 
-## Quick Start: Populating the table statically
+## Quick Start & Examples
+
+### Quick Start: Populating the table statically
 
 Import the `TableMain` component and its types `TableColumn, TableData` into your .vue file. Then fill the `TableColumn` array with the name of columns, and `TableData` array with objects that have key-value pairs corresponding to the `TableColumn` key values. An example of the basic usage is as follows:
 
@@ -51,7 +53,7 @@ const data: TableData[] = [
 ```
 ![alt text](https://github.com/fx-ntm/Vue-DisplayTable/blob/main/2025-12-17-162533_hyprshot.png "Static Content")
 
-## Quick Start: Populating the Table dynamically
+### Quick Start: Populating the Table dynamically
 
 You can also populate the table dynamically using API responses. You have to make use of Vue's reactivity features to initialize a reactive array of `TableData` and then fill the array with the values you get from your API. Make sure the columns' keys in `TableColumn` array are same as the attributes you'd receive from your API!
 
@@ -95,6 +97,53 @@ onMounted(async () => {
 </template>
 ```
 ![alt text](https://github.com/fx-ntm/Vue-DisplayTable/blob/main/2025-12-17-162726_hyprshot.png "Dynamic Content")
+
+
+### Quick Start: Implementing extra functionality with slots
+
+You can insert your own logic into the code by using slots (such as clickable cells that open a link, or an action button group of edit and delete buttons).
+For this you have to define a new column with a `key`. Then inside `<TableMain></TableMain>` tags, create a `<template #cell-columnkey="{args}"></template>`
+template tag, that refers to the key of the column. Inside the template tag, you can pass your own code, which be rendered using slots
+
+Example usage:
+
+```vue
+<script setup lang="ts">
+import TableMain from '../components/Table/components/TableMain.vue';
+import type { TableColumn, TableData } from '../components/Table';
+
+const actionSlotCols: TableColumn[] = [
+    { key: 'id', label: 'EAN', sortable: true, width: '20%' },
+    { key: 'name', label: 'Product Name', sortable: true, width: '40%' },
+    { key: 'actions', label: 'Actions', sortable: false, width: '50%'}
+];
+const actionSlotData: TableData[] = [
+    { id: 48234, name: 'Amazing Tool' },
+    { id: 39534, name: 'Horrible Tool' },
+];
+</script>
+
+<template>
+    <TableMain :columns="actionSlotCols" :data="actionSlotData">
+        <template #cell-id="{value}">  <!-- Clickable Link in the 'id' column -->
+            <a :href="`${value}`" class="text-blue-500">
+                {{value}}
+            </a>
+        </template>
+        <template #cell-actions> <!-- Action Button Group in the 'actions' column -->
+            <div class="flex gap-1">
+                <button class="px-1 py-1 bg-blue-500 text-black rounded text-sm">
+                    Edit
+                </button>
+                <button class="px-1 py-1 bg-red-500 text-black rounded text-sm">
+                    Delete
+                </button>
+            </div>
+        </template>
+    </TableMain>
+</template>
+```
+![alt text](https://github.com/fx-ntm/Vue-DisplayTable/blob/slots/2026-01-22-161752_hyprshot.png "Slots Functionality")
 
 ## Props
 

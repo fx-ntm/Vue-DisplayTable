@@ -18,6 +18,10 @@ const props = defineProps<{
             :data="props.data[column.key]"
             :column="column"
             :row-data="props.data"
-        />
+        >
+            <template v-for="(_, slotName) in $slots" #[slotName]="slotProps">
+                <slot :name="slotName" v-bind="slotProps" />
+            </template>
+        </TableCell>
     </tr>
 </template>
