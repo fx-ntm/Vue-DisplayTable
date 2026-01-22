@@ -143,7 +143,7 @@ const actionSlotData: TableData[] = [
     </TableMain>
 </template>
 ```
-![alt text](https://github.com/fx-ntm/Vue-DisplayTable/blob/slots/2026-01-22-161752_hyprshot.png "Slots Functionality")
+![alt text](https://github.com/fx-ntm/Vue-DisplayTable/blob/main/2026-01-22-161752_hyprshot.png "Slots Functionality")
 
 ## Props
 
