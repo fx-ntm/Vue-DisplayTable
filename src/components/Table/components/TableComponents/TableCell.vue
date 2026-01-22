@@ -1,17 +1,19 @@
 <script setup lang="ts">
-import type { TableColumn } from '../../types/TableTypes';
+import type { TableColumn, TableData } from '../../types/TableTypes';
 
 const props = defineProps<{
     data?: string | number | null;
     column: TableColumn;
+    rowData?: TableData;
 }>();
 </script>
 
 <template>
     <td class="text-left text-md dark:text-white relative pr-12">
         <div class="relative">
-            <p>{{ props.data }}</p>
-            <div class="absolute top-0 right-0 bottom-0 w-16"></div>
+            <slot :name="`cell-${column.key}`" :value="data" :row="props.rowData" :column="column">
+                <p>{{ data }}</p>
+            </slot>
         </div>
     </td>
 </template>
