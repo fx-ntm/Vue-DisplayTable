@@ -1,6 +1,6 @@
 {
   "name": "vue-displaytable",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A highly customizable and modular Table component library for Vue 3, built with TypeScript and Tailwind CSS 4",
   "author": "fx-ntm",
   "license": "MIT",
